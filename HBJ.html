@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(45deg, #FF5733, #FFC300, #33FF57, #339CFF, #FF33E8);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: white;
+            text-align: center;
+            display: none; /* Inicialmente oculto */
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .confeti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: rgb(255, 136, 0);
+            animation: confeti 2s linear infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes confeti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(500px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>HAPPY BIRTHDAY MISS JENNIFFER!</h1>
+    <button onclick="mostrarFrase()">Start</button>
+
+    <script>
+        function mostrarFrase() {
+            // Obtén el elemento h1 y muéstralo
+            var frase = document.querySelector('h1');
+            frase.style.display = 'block';
+
+            // Generar confeti
+            for (var i = 0; i < 50; i++) {
+                crearConfeti();
+            }
+        }
+
+        function crearConfeti() {
+            var confeti = document.createElement('div');
+            confeti.classList.add('confeti');
+            confeti.style.left = Math.random() * window.innerWidth + 'px';
+            confeti.style.animationDuration = Math.random() * 3 + 1 + 's';
+            document.body.appendChild(confeti);
+
+            setTimeout(function() {
+                confeti.remove();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
